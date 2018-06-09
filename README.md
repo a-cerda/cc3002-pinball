@@ -1,3 +1,3 @@
 # Pinball - Tarea CC3002
 
-Escriba aquí los contenidos del readme.
+Este es el pinball creado por **Andrés Cerda**
