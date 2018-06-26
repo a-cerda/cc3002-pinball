@@ -8,6 +8,7 @@ import logic.gameelements.Hittable;
  * @author Juan-Pablo Silva
  * @see KickerBumper
  * @see PopBumper
+ * @see AbstractBumper
  */
 public interface Bumper extends Hittable {
     /**
