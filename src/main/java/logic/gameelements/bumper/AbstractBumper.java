@@ -17,6 +17,14 @@ public class AbstractBumper implements Bumper{
         this.pointsPerHit = normalPoints;
     }
 
+    //Constructor for selecting whether the bumoper starts upgraded or not
+    public AbstractBumper(boolean upgraded, int normalPoints, int upgradedPoints, int remainingHits)
+    {
+        this(normalPoints,upgradedPoints,remainingHits);
+        this.isUpgraded = upgraded;
+        if(this.isUpgraded)this.pointsPerHit = upgradedPoints;
+    }
+
     @Override
     public int remainingHitsToUpgrade() {
         return remainingHitsToUpgrade;

@@ -7,4 +7,10 @@ public class KickerBumper extends AbstractBumper {
     {
         super(500,1000,5);
     }
+
+    //Returns an upgraded KickerBumper
+    public KickerBumper(boolean upgraded)
+    {
+        super(upgraded,500,1000,5);
+    }
 }
