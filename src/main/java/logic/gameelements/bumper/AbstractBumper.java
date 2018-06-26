@@ -1,6 +1,6 @@
 package logic.gameelements.bumper;
 
-public class AbstractBumper implements Bumper{
+public abstract class AbstractBumper implements Bumper{
     protected boolean isUpgraded = false;
     protected int remainingHitsToUpgrade;
     protected int pointsPerHit;
