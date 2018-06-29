@@ -13,4 +13,5 @@ public class KickerBumper extends AbstractBumper {
     {
         super(upgraded,500,1000,5);
     }
+    //tratar de usar visitor pattern con double dispatch para poder llamar al ExtraBallBonus
 }

@@ -1,16 +1,20 @@
 package logic.gameelements.bumper;
+import java.util.Random;
 
 public abstract class AbstractBumper implements Bumper{
     protected boolean isUpgraded = false;
     protected int remainingHitsToUpgrade;
+    protected int hitsToUpgrade;
     protected int pointsPerHit;
     protected int upgradedPoints;
     protected int normalPoints;
+    Random rand = new Random();
 
 
 
     public AbstractBumper(int normalPoints,int upgradedPoints, int remainingHits)
     {
+        this.hitsToUpgrade = remainingHits;
         this.remainingHitsToUpgrade = remainingHits;
         this.normalPoints = normalPoints;
         this.upgradedPoints = upgradedPoints;
@@ -22,7 +26,10 @@ public abstract class AbstractBumper implements Bumper{
     {
         this(normalPoints,upgradedPoints,remainingHits);
         this.isUpgraded = upgraded;
-        if(this.isUpgraded)this.pointsPerHit = upgradedPoints;
+        if(this.isUpgraded){
+            this.pointsPerHit = upgradedPoints;
+            this.remainingHitsToUpgrade  = 0;
+        }
     }
 
     @Override
@@ -45,6 +52,7 @@ public abstract class AbstractBumper implements Bumper{
     public void downgrade() {
         isUpgraded = false;
         pointsPerHit = normalPoints;
+        remainingHitsToUpgrade = hitsToUpgrade;
     }
 
     @Override
@@ -55,11 +63,22 @@ public abstract class AbstractBumper implements Bumper{
             remainingHitsToUpgrade--;
 
         }
+        if(remainingHitsToUpgrade <= 0){
+            this.upgrade();
+            return normalPoints;
+        }
         return pointsPerHit;
     }
 
     @Override
     public int getScore() {
         return pointsPerHit;
+    }
+
+    public int randInt(int min, int max) {
+
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+
+        return randomNum;
     }
 }
