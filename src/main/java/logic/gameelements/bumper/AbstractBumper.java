@@ -1,14 +1,17 @@
 package logic.gameelements.bumper;
-import java.util.Random;
+import controller.Game;
 
-public abstract class AbstractBumper implements Bumper{
+import java.util.Random;
+import java.util.Observable;
+
+public abstract class AbstractBumper extends Observable implements Bumper{
     protected boolean isUpgraded = false;
     protected int remainingHitsToUpgrade;
     protected int hitsToUpgrade;
     protected int pointsPerHit;
     protected int upgradedPoints;
     protected int normalPoints;
-    Random rand = new Random();
+    protected Random rand = new Random();
 
 
 
@@ -21,7 +24,7 @@ public abstract class AbstractBumper implements Bumper{
         this.pointsPerHit = normalPoints;
     }
 
-    //Constructor for selecting whether the bumoper starts upgraded or not
+    //Constructor for selecting whether the bumper starts upgraded or not
     public AbstractBumper(boolean upgraded, int normalPoints, int upgradedPoints, int remainingHits)
     {
         this(normalPoints,upgradedPoints,remainingHits);
@@ -46,6 +49,14 @@ public abstract class AbstractBumper implements Bumper{
     public void upgrade() {
         isUpgraded = true;
         pointsPerHit = upgradedPoints;
+        int chance = randInt(1,100);
+        //This gives us a 10% chance of getting the ExtraBallBonus
+        if(chance <= 10)
+        {
+            this.setChanged();
+            //Call the ExtraBallBonus
+            notifyObservers(this);
+        }
     }
 
     @Override
@@ -75,10 +86,22 @@ public abstract class AbstractBumper implements Bumper{
         return pointsPerHit;
     }
 
+    //This one is good, it returns a random integer between min and max
     public int randInt(int min, int max) {
 
         int randomNum = rand.nextInt((max - min) + 1) + min;
 
         return randomNum;
+    }
+
+    /**
+     * Method used for the setting of the seed of the Random instance on the bumper
+     * It is here to mantain the encapsulation when testing
+     *
+     * @param seed
+     */
+
+    public void setSeed(long seed){
+        this.rand.setSeed(seed);
     }
 }

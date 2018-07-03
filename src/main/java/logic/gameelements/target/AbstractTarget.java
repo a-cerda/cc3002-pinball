@@ -1,8 +1,12 @@
 package logic.gameelements.target;
+import java.util.Observable;
+import java.util.Observer;
 
-public abstract class AbstractTarget implements Target{
+
+public abstract class AbstractTarget extends Observable implements Target{
     boolean isActive;
     int pointsPerHit;
+
 
 
     public AbstractTarget(int pointsPerHit){
@@ -40,7 +44,8 @@ public abstract class AbstractTarget implements Target{
      */
     @Override
     public int hit() {
-        return pointsPerHit;
+
+        return 0;
     }
 
     /**

@@ -24,4 +24,13 @@ public interface Bonus {
      * @param game the game controller object
      */
     void trigger(Game game);
+
+    /**
+     * Accept the game as a visitor in order to trigger the bonus
+     *
+     * @param game the game controller object
+     */
+    void accept(Game game);
+
+
 }

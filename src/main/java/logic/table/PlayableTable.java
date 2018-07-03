@@ -8,13 +8,18 @@ import logic.gameelements.target.SpotTarget;
 import logic.gameelements.target.Target;
 
 import java.util.List;
+import java.util.Observable;
 
-public abstract class AbstractTable implements Table{
+public class PlayableTable implements Table{
     private String name;
     private List<DropTarget> dropTargets;
     private List<SpotTarget> spotTargets;
     private List<KickerBumper> kickerBumpers;
     private List<PopBumper> popBumpers;
+
+
+    public PlayableTable(){}
+
 
     /**
      * Gets the table name.
@@ -23,7 +28,7 @@ public abstract class AbstractTable implements Table{
      */
     @Override
     public String getTableName() {
-        return name;
+        return null;
     }
 
     /**
@@ -90,5 +95,30 @@ public abstract class AbstractTable implements Table{
     @Override
     public boolean isPlayableTable() {
         return false;
+    }
+
+    /**
+     * This method is called whenever the observed object is changed. An
+     * application calls an <tt>Observable</tt> object's
+     * <code>notifyObservers</code> method to have all the object's
+     * observers notified of the change.
+     *
+     * @param o   the observable object.
+     * @param arg an argument passed to the <code>notifyObservers</code>
+     */
+    @Override
+    public void update(Observable o, Object arg) {
+        if(arg instanceof Bumper)
+        {
+
+        }
+        if(arg instanceof DropTarget)
+        {
+
+        }
+        if(arg instanceof SpotTarget)
+        {
+
+        }
     }
 }
