@@ -31,7 +31,7 @@ public class PlayableTable implements Table{
      */
     @Override
     public String getTableName() {
-        return null;
+        return name;
     }
 
     /**
@@ -41,7 +41,7 @@ public class PlayableTable implements Table{
      */
     @Override
     public int getNumberOfDropTargets() {
-        return 0;
+        return dropTargets.size();
     }
 
     /**
@@ -51,7 +51,12 @@ public class PlayableTable implements Table{
      */
     @Override
     public int getCurrentlyDroppedDropTargets() {
-        return 0;
+        int dropped = 0;
+        for (DropTarget target: dropTargets) {
+            if(!target.isActive()) dropped++;
+            
+        }
+        return dropped;
     }
 
     /**
@@ -61,7 +66,9 @@ public class PlayableTable implements Table{
      */
     @Override
     public List<Bumper> getBumpers() {
-        return null;
+        List<Bumper> newList = ;
+
+        return newList;
     }
 
     /**
