@@ -1,5 +1,7 @@
 package logic.table;
 
+import logic.TableVisitor;
+
 import logic.gameelements.bumper.Bumper;
 import logic.gameelements.target.Target;
 
@@ -11,7 +13,7 @@ import java.util.Observer;
  *
  * @author Juan-Pablo Silva
  */
-public interface Table extends Observer {
+public interface Table extends Observer, TableVisitor {
     /**
      * Gets the table name.
      *

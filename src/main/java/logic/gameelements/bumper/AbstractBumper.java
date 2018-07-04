@@ -1,5 +1,6 @@
 package logic.gameelements.bumper;
 import controller.Game;
+import logic.table.Table;
 
 import java.util.Random;
 import java.util.Observable;
@@ -103,5 +104,10 @@ public abstract class AbstractBumper extends Observable implements Bumper{
 
     public void setSeed(long seed){
         this.rand.setSeed(seed);
+    }
+
+    @Override
+    public void accept(Table table){
+        table.visitBumper(this);
     }
 }

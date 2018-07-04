@@ -33,17 +33,10 @@ public class ExtraBallBonus extends AbstractBonus implements Bonus {
      */
     @Override
     public void trigger(Game game) {
-
+        game.addBall();
+        timesTriggered++;
     }
 
-    /**
-     * Accept the game as a visitor in order to trigger the bonus
-     *
-     * @param game the game controller object
-     */
-    @Override
-    public void accept(Game game) {
 
-    }
 
 }

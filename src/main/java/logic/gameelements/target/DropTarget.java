@@ -1,5 +1,7 @@
 package logic.gameelements.target;
 
+import logic.table.Table;
+
 import java.util.Random;
 
 public class DropTarget extends AbstractTarget{
@@ -29,6 +31,10 @@ public class DropTarget extends AbstractTarget{
     }
 
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hit(){
         if (randInt(1,100)<30)
@@ -37,5 +43,15 @@ public class DropTarget extends AbstractTarget{
             notifyObservers(this);
         }
         return pointsPerHit;
+    }
+
+    /**
+     * Defines that a hittable object can be visited by a table when the table is notified to do so.
+     *
+     * @param table
+     */
+    @Override
+    public void accept(Table table) {
+        table.visitDropTarget(this);
     }
 }

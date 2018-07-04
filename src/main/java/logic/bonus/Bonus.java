@@ -30,7 +30,7 @@ public interface Bonus {
      *
      * @param game the game controller object
      */
-    void accept(Game game);
+
 
 
 }

@@ -7,6 +7,7 @@ import controller.Game;
  */
 public class JackPotBonus extends AbstractBonus {
     private static JackPotBonus jackPotBonus;
+    private int pointsGiven;
 
     public static JackPotBonus getUniqueInstance() {
         if(jackPotBonus == null){
@@ -26,16 +27,9 @@ public class JackPotBonus extends AbstractBonus {
      */
     @Override
     public void trigger(Game game) {
-
+        game.addToScore(pointsGiven);
+        timesTriggered++;
     }
 
-    /**
-     * Accept the game as a visitor in order to trigger the bonus
-     *
-     * @param game the game controller object
-     */
-    @Override
-    public void accept(Game game) {
 
-    }
 }

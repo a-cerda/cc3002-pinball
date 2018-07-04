@@ -1,5 +1,7 @@
 package logic.table;
 
+import controller.Game;
+import logic.gameelements.Hittable;
 import logic.gameelements.bumper.Bumper;
 import logic.gameelements.bumper.KickerBumper;
 import logic.gameelements.bumper.PopBumper;
@@ -16,6 +18,7 @@ public class PlayableTable implements Table{
     private List<SpotTarget> spotTargets;
     private List<KickerBumper> kickerBumpers;
     private List<PopBumper> popBumpers;
+    private Game game;
 
 
     public PlayableTable(){}
@@ -94,7 +97,7 @@ public class PlayableTable implements Table{
      */
     @Override
     public boolean isPlayableTable() {
-        return false;
+        return true;
     }
 
     /**
@@ -108,17 +111,40 @@ public class PlayableTable implements Table{
      */
     @Override
     public void update(Observable o, Object arg) {
-        if(arg instanceof Bumper)
+        if(arg instanceof Hittable)
         {
-
+            ((Hittable)arg).accept(this);
         }
-        if(arg instanceof DropTarget)
-        {
+    }
 
-        }
-        if(arg instanceof SpotTarget)
-        {
 
-        }
+    /**
+     * A method for visiting a bumper and invoking the corresponding ExtraBallBonus
+     *
+     * @param bumper
+     */
+    @Override
+    public void visitBumper(Bumper bumper) {
+        game.triggerExtraBallBonus();
+    }
+
+    /**
+     * A method for visiting a spotTarget and invoking a JackPotBonus
+     *
+     * @param spotTarget
+     */
+    @Override
+    public void visitSpotTarget(SpotTarget spotTarget) {
+        game.triggerJackPotBonus();
+    }
+
+    /**
+     * A method for visiting a DropTarget and invoking a DropTargetBonus
+     *
+     * @param dropTarget
+     */
+    @Override
+    public void visitDropTarget(DropTarget dropTarget) {
+        game.triggerDropTargetBonus();
     }
 }

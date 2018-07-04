@@ -1,5 +1,7 @@
 package logic.gameelements;
 
+import logic.table.Table;
+
 /**
  * Interface that represents a hittable object.
  *
@@ -24,4 +26,11 @@ public interface Hittable {
      * @return the current score of the object when hit
      */
     int getScore();
+
+    /**
+     * Defines that a hittable object can be visited by a table when the table is notified to do so.
+     *
+     * @param table
+     */
+    void accept(Table table);
 }

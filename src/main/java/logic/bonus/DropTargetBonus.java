@@ -4,6 +4,7 @@ import controller.Game;
 
 public class DropTargetBonus extends AbstractBonus {
     private static DropTargetBonus dropTargetBonus;
+    private int pointsGiven = 1000000;
 
     public static DropTargetBonus getUniqueInstance(){
         if(dropTargetBonus == null){
@@ -24,16 +25,10 @@ public class DropTargetBonus extends AbstractBonus {
      */
     @Override
     public void trigger(Game game) {
-
+        game.addToScore(pointsGiven);
+        game.upgradeAllBumpers();
+        timesTriggered++;
     }
 
-    /**
-     * Accept the game as a visitor in order to trigger the bonus
-     *
-     * @param game the game controller object
-     */
-    @Override
-    public void accept(Game game) {
 
-    }
 }
