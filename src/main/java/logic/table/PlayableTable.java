@@ -9,6 +9,7 @@ import logic.gameelements.target.DropTarget;
 import logic.gameelements.target.SpotTarget;
 import logic.gameelements.target.Target;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
@@ -66,7 +67,7 @@ public class PlayableTable implements Table{
      */
     @Override
     public List<Bumper> getBumpers() {
-        List<Bumper> newList = ;
+        List<Bumper> newList = new ArrayList<Bumper>();
 
         return newList;
     }
