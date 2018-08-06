@@ -2,7 +2,6 @@ package logic.gameelements.target;
 
 import logic.table.Table;
 
-import java.util.Observable;
 
 public class SpotTarget extends AbstractTarget {
 
@@ -10,6 +9,10 @@ public class SpotTarget extends AbstractTarget {
         super(0);
     }
 
+    /**
+     *
+     * @return pointsPerHit, the points that a spottarget gives, which is zero.
+     */
     @Override
     public int hit(){
         this.setChanged();

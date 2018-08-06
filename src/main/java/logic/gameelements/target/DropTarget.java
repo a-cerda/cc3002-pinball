@@ -4,6 +4,13 @@ import logic.table.Table;
 
 import java.util.Random;
 
+
+/**
+ * class DropTarget
+ * Class for DropTarget functionality, it's observed by Table
+ * It extends AbstractTarget
+ * @see logic.gameelements.target.AbstractTarget
+ */
 public class DropTarget extends AbstractTarget{
     private Random rand = new Random();
 
@@ -13,7 +20,13 @@ public class DropTarget extends AbstractTarget{
     }
 
 
-    //This one is good, it returns a random integer between min and max
+    /**
+     * randInt: Given a minimum and a maximum, returns a random integer between the two.
+     * @param min the minimum value of the random number
+     * @param max the maximum value of the random number
+     * @return Random integer between min and max
+     */
+
     public int randInt(int min, int max) {
 
         return rand.nextInt((max - min) + 1) + min;

@@ -10,10 +10,20 @@ import logic.gameelements.target.Target;
 import java.util.List;
 import java.util.Observable;
 
+/**
+ * Class for instantiating a non playable table, implementing the null object pattern.
+ * Every one of it's methods modifies nothing and/or does nothing.
+ */
 public class NullTable implements Table{
     private String name;
 
 
+    /**
+     * Constructor for the NullTable class, returns a new NullTable with the name set to "null".
+     */
+    public NullTable(){
+        name = "null";
+    }
 
     /**
      * Gets the table name.
@@ -67,6 +77,7 @@ public class NullTable implements Table{
 
     /**
      * Resets all {@link DropTarget} in the table. Make them active.
+     * does nothing
      */
     @Override
     public void resetDropTargets() {
@@ -75,6 +86,7 @@ public class NullTable implements Table{
 
     /**
      * Upgrade all {@link Bumper}s in the table.
+     * does nothing.
      */
     @Override
     public void upgradeAllBumpers() {
@@ -91,6 +103,12 @@ public class NullTable implements Table{
         return false;
     }
 
+
+    /**
+     * Mehtod to update based on a notification, does nothing.
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg){
 
@@ -98,7 +116,7 @@ public class NullTable implements Table{
 
     /**
      * A method for visiting a bumper and invoking the corresponding ExtraBallBonus
-     *
+     * does nothing
      * @param bumper
      */
     @Override
@@ -108,7 +126,7 @@ public class NullTable implements Table{
 
     /**
      * A method for visiting a spotTarget and invoking a JackPotBonus
-     *
+     * does nothing
      * @param spotTarget
      */
     @Override
@@ -118,7 +136,7 @@ public class NullTable implements Table{
 
     /**
      * A method for visiting a DropTarget and invoking a DropTargetBonus
-     *
+     * does nothing
      * @param dropTarget
      */
     @Override

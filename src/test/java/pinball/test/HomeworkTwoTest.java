@@ -1,10 +1,18 @@
 package pinball.test;
 
 
+import controller.Game;
+import logic.bonus.DropTargetBonus;
+import logic.bonus.ExtraBallBonus;
+import logic.bonus.JackPotBonus;
 import logic.gameelements.bumper.KickerBumper;
 import logic.gameelements.bumper.PopBumper;
 import logic.gameelements.target.DropTarget;
 import logic.gameelements.target.SpotTarget;
+import logic.table.NullTable;
+import logic.table.PlayableTable;
+
+
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -21,12 +29,14 @@ public class HomeworkTwoTest {
     private SpotTarget spotTarget;
     private DropTarget dropTarget;
 
-    /*private NullTable nullTable;
+    private NullTable nullTable;
     private PlayableTable playableTable;
 
     private ExtraBallBonus extraBallBonus;
     private JackPotBonus jackPotBonus;
-    private DropTargetBonus dropTargetBonus;*/
+    private DropTargetBonus dropTargetBonus;
+
+    private Game game;
 
 
     @Before
@@ -38,6 +48,11 @@ public class HomeworkTwoTest {
         popBumper = new PopBumper();
         dropTarget = new DropTarget();
         spotTarget = new SpotTarget();
+        nullTable = new NullTable();
+        game = Game.getUniqueGame();
+        playableTable = new PlayableTable();
+
+
 
 
     }
@@ -106,9 +121,22 @@ public class HomeworkTwoTest {
         assertEquals(0,upgradedPopBumper.remainingHitsToUpgrade());
     }
 
+    @Test
     public void DropTargetTest()
     {
+        dropTarget.setSeed(1);
+        int pointsGiven = dropTarget.hit();
+        assertEquals(100,pointsGiven);
+        assertTrue(dropTarget.isActive());
+    }
+
+    @Test
+    public void SpotTargetTest(){
+        int pointsGiven = spotTarget.hit();
+        assertEquals(0,pointsGiven);
+
 
     }
+
 
 }
