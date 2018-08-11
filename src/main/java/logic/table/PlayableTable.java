@@ -12,6 +12,7 @@ import logic.gameelements.target.Target;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Random;
 
 public class PlayableTable implements Table{
     private String name;
@@ -20,10 +21,76 @@ public class PlayableTable implements Table{
     private List<KickerBumper> kickerBumpers;
     private List<PopBumper> popBumpers;
     private Game game;
+    private static Random rand = new Random();
+
+    /**
+     * Creates a new table with the given parameters with no targets.
+     *
+     * @param name            the name of the table
+     * @param numberOfBumpers the number of bumpers in the table
+     * @param probabilityOfPopBumper            the probability a {@link logic.gameelements.bumper.PopBumper}
+     * @return a new table determined by the parameters
+     */
 
 
-    public PlayableTable(){}
+    public PlayableTable(String name, int numberOfBumpers, double probabilityOfPopBumper){
+        this.name = name;
+        this.popBumpers = new ArrayList<PopBumper>();
+        this.kickerBumpers = new ArrayList<KickerBumper>();
+        this.spotTargets = new ArrayList<SpotTarget>();
+        this.dropTargets = new ArrayList<DropTarget>();
+        for (int i = 0; i< numberOfBumpers; ++i){
+            if(randInt(1,10)<= probabilityOfPopBumper*10){
+                this.popBumpers.add(new PopBumper());
+                this.popBumpers.get(popBumpers.size() - 1).addObserver(this);
+            }
+            else{
+                this.kickerBumpers.add(new KickerBumper());
+                this.kickerBumpers.get(kickerBumpers.size() - 1).addObserver(this);
+            }
+        }
+    }
 
+    @Override
+    public PlayableTable setGame(Game game){
+        this.game = game;
+        return this;
+    }
+
+
+    public PlayableTable setTargets(int numberOfSpotTargets, int numberOfDropTargets){
+        for(int i = 0; i<numberOfDropTargets; i++){
+            this.dropTargets.add(new DropTarget());
+            this.dropTargets.get(i).addObserver(this);
+        }
+        for (int i = 0; i< numberOfSpotTargets; i++){
+            this.spotTargets.add(new SpotTarget());
+            this.spotTargets.get(i).addObserver(this);
+        }
+        return this;
+    }
+    /**
+     * randInt: Given a minimum and a maximum, returns a random integer between the two.
+     * @param min the minimum value of the random number
+     * @param max the maximum value of the random number
+     * @return Random integer between min and max
+     */
+
+    public static int randInt(int min, int max) {
+
+        return rand.nextInt((max - min) + 1) + min;
+    }
+
+    /**
+     * Method used for the setting of the seed of the Random instance on the bumper
+     * It is here to mantain the encapsulation when testing
+     *
+     * @param seed
+     */
+
+    public void setSeed(long seed){
+        this.rand.setSeed(seed);
+    }
 
     /**
      * Gets the table name.
@@ -55,7 +122,7 @@ public class PlayableTable implements Table{
         int dropped = 0;
         for (DropTarget target: dropTargets) {
             if(!target.isActive()) dropped++;
-            
+
         }
         return dropped;
     }
@@ -67,8 +134,9 @@ public class PlayableTable implements Table{
      */
     @Override
     public List<Bumper> getBumpers() {
-        List<Bumper> newList = new ArrayList<Bumper>(); {
-        };
+        List<Bumper> newList = new ArrayList<Bumper>();
+        newList.addAll(kickerBumpers);
+        newList.addAll(popBumpers);
 
         return newList;
     }
@@ -80,9 +148,11 @@ public class PlayableTable implements Table{
      */
     @Override
     public List<Target> getTargets() {
+        List<Target> newList = new ArrayList<Target>();
+        newList.addAll(dropTargets);
+        newList.addAll(spotTargets);
 
-
-        return ;
+        return newList;
     }
 
     /**
@@ -120,6 +190,8 @@ public class PlayableTable implements Table{
         return true;
     }
 
+
+
     /**
      * This method is called whenever the observed object is changed. An
      * application calls an <tt>Observable</tt> object's
@@ -145,7 +217,17 @@ public class PlayableTable implements Table{
      */
     @Override
     public void visitBumper(Bumper bumper) {
-        game.triggerExtraBallBonus();
+        game.addToScore(bumper.getScore());
+
+        int chance = randInt(1,100);
+        //This gives us a 10% chance of getting the ExtraBallBonus
+        if(chance <= 10)
+        {
+
+            //Call the ExtraBallBonus
+            game.triggerExtraBallBonus();
+        }
+
     }
 
     /**
@@ -154,7 +236,9 @@ public class PlayableTable implements Table{
      * @param spotTarget
      */
     @Override
-    public void visitSpotTarget(SpotTarget spotTarget) {
+    public void visitSpotTarget(SpotTarget spotTarget)
+    {
+        game.addToScore(spotTarget.getScore());
         game.triggerJackPotBonus();
     }
 
@@ -165,6 +249,13 @@ public class PlayableTable implements Table{
      */
     @Override
     public void visitDropTarget(DropTarget dropTarget) {
-        game.triggerDropTargetBonus();
+        game.addToScore(dropTarget.getScore());
+        if(randInt(1,100) < 30){
+            game.triggerExtraBallBonus();
+        }
+
+        if(this.getCurrentlyDroppedDropTargets() == dropTargets.size()){
+            game.triggerDropTargetBonus();
+        }
     }
 }

@@ -50,11 +50,14 @@ public class DropTarget extends AbstractTarget{
      */
     @Override
     public int hit(){
-        if (randInt(1,100)<30)
-        {
-            this.setChanged();
-            notifyObservers(this);
-        }
+        this.isActive = false;
+//        if (randInt(1,100)<30)
+//        {
+//            this.setChanged();
+//            notifyObservers(this);
+//        }
+        this.setChanged();
+        notifyObservers(this);
         return pointsPerHit;
     }
 

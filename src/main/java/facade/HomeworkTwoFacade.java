@@ -4,6 +4,7 @@ import controller.Game;
 import logic.bonus.Bonus;
 import logic.gameelements.bumper.Bumper;
 import logic.gameelements.target.Target;
+import logic.table.PlayableTable;
 import logic.table.Table;
 
 import java.util.List;
@@ -66,7 +67,7 @@ public class HomeworkTwoFacade {
      * @return a new table determined by the parameters
      */
     public Table newPlayableTableWithNoTargets(String name, int numberOfBumpers, double prob) {
-        return null;
+        return new PlayableTable(name,numberOfBumpers,prob);
     }
 
     /**
@@ -80,7 +81,7 @@ public class HomeworkTwoFacade {
      * @return a new table determined by the parameters
      */
     public Table newFullPlayableTable(String name, int numberOfBumpers, double prob, int numberOfTargets, int numberOfDropTargets) {
-        return null;
+        return new PlayableTable(name,numberOfBumpers,prob).setTargets(numberOfTargets,numberOfDropTargets);
     }
 
     /**

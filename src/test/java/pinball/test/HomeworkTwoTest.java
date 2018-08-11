@@ -5,6 +5,7 @@ import controller.Game;
 import logic.bonus.DropTargetBonus;
 import logic.bonus.ExtraBallBonus;
 import logic.bonus.JackPotBonus;
+import logic.gameelements.bumper.Bumper;
 import logic.gameelements.bumper.KickerBumper;
 import logic.gameelements.bumper.PopBumper;
 import logic.gameelements.target.DropTarget;
@@ -15,6 +16,9 @@ import logic.table.PlayableTable;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -49,8 +53,8 @@ public class HomeworkTwoTest {
         dropTarget = new DropTarget();
         spotTarget = new SpotTarget();
         nullTable = new NullTable();
-        game = Game.getUniqueGame();
-        playableTable = new PlayableTable();
+        //game = Game.getUniqueGame();
+        //playableTable = new PlayableTable("test1",5,0.4);
 
 
 
@@ -127,7 +131,7 @@ public class HomeworkTwoTest {
         dropTarget.setSeed(1);
         int pointsGiven = dropTarget.hit();
         assertEquals(100,pointsGiven);
-        assertTrue(dropTarget.isActive());
+
     }
 
     @Test
@@ -138,5 +142,22 @@ public class HomeworkTwoTest {
 
     }
 
+    public void GameTest(){
+        game.addBall();
+        assertEquals(4,game.getAvailableBalls());
+        game.triggerExtraBallBonus();
+        assertEquals(5,game.getAvailableBalls());
+        game.dropBall();
+        game.dropBall();
+        assertEquals(3,game.getAvailableBalls());
+        game.setCurrentTable(playableTable);
+        playableTable.upgradeAllBumpers();
+        System.out.println(game.getAvailableBalls());
+        List<Bumper> bumperList = game.getBumpers();
+        for (Bumper b:
+             bumperList) {
+            assertTrue(b.isUpgraded());
+        }
+    }
 
 }

@@ -10,13 +10,15 @@ import logic.table.NullTable;
 import logic.table.Table;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Game logic controller class.
  *
  * @author Juan-Pablo Silva
  */
-public class Game {
+public class Game implements Observer {
 
     //Private paramenter uniqueGame lets us instantiate a single instance of the game class
     //at any given time (Singleton Pattern)
@@ -41,6 +43,10 @@ public class Game {
         balls = 3;
         score = 0;
         currentTable = new NullTable();
+        extraBallBonus.addObserver(this);
+        jackPotBonus.addObserver(this);
+        dropTargetBonus.addObserver(this);
+
     }
 
     /**Method for getting the unique instance of game
@@ -57,9 +63,11 @@ public class Game {
     /**
      * Method to trigger an ExtraBallBonus
      */
+
     public void triggerExtraBallBonus(){
         this.extraBallBonus.trigger(this);
     }
+
 
     /**
      * Method to trigger a JackPotBonus
@@ -110,7 +118,11 @@ public class Game {
     }
 
     public int dropBall() {
-        this.balls--;
+        //Check whether there are any balls to drop
+        if(balls > 0){
+            this.balls--;
+        }
+
         return balls;
     }
 
@@ -121,6 +133,7 @@ public class Game {
 
     public void setCurrentTable(Table newTable) {
         currentTable = newTable;
+        currentTable.setGame(this);
     }
 
     public Table getCurrentTable() {
@@ -157,5 +170,21 @@ public class Game {
 
     public boolean isCurrentTablePlayable() {
         return this.currentTable.isPlayableTable();
+    }
+
+    /**
+     * This method is called whenever the observed object is changed. An
+     * application calls an <tt>Observable</tt> object's
+     * <code>notifyObservers</code> method to have all the object's
+     * observers notified of the change.
+     *
+     * @param o   the observable object.
+     * @param arg an argument passed to the <code>notifyObservers</code>
+     */
+    @Override
+    public void update(Observable o, Object arg) {
+        if(arg instanceof Bonus){
+            ((Bonus) arg).trigger(this);
+        }
     }
 }

@@ -1,8 +1,9 @@
 package logic.bonus;
 
-public abstract class AbstractBonus implements Bonus{
-    protected int timesTriggered;
+import java.util.Observable;
 
+public abstract class AbstractBonus extends Observable implements Bonus{
+    protected int timesTriggered;
 
     protected AbstractBonus(){
         this.timesTriggered = 0;

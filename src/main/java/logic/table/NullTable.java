@@ -1,5 +1,6 @@
 package logic.table;
 
+import controller.Game;
 import logic.gameelements.bumper.Bumper;
 import logic.gameelements.bumper.KickerBumper;
 import logic.gameelements.bumper.PopBumper;
@@ -7,6 +8,7 @@ import logic.gameelements.target.DropTarget;
 import logic.gameelements.target.SpotTarget;
 import logic.gameelements.target.Target;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
@@ -22,7 +24,7 @@ public class NullTable implements Table{
      * Constructor for the NullTable class, returns a new NullTable with the name set to "null".
      */
     public NullTable(){
-        name = "null";
+        name = "";
     }
 
     /**
@@ -62,7 +64,7 @@ public class NullTable implements Table{
      */
     @Override
     public List<Bumper> getBumpers() {
-        return null;
+        return new ArrayList<Bumper>();
     }
 
     /**
@@ -72,7 +74,7 @@ public class NullTable implements Table{
      */
     @Override
     public List<Target> getTargets() {
-        return null;
+        return new ArrayList<Target>();
     }
 
     /**
@@ -101,6 +103,11 @@ public class NullTable implements Table{
     @Override
     public boolean isPlayableTable() {
         return false;
+    }
+
+    @Override
+    public Table setGame(Game game) {
+        return this;
     }
 
 

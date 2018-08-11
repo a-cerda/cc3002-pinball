@@ -50,14 +50,14 @@ public abstract class AbstractBumper extends Observable implements Bumper{
     public void upgrade() {
         isUpgraded = true;
         pointsPerHit = upgradedPoints;
-        int chance = randInt(1,100);
+        //int chance = randInt(1,100);
         //This gives us a 10% chance of getting the ExtraBallBonus
-        if(chance <= 10)
+       /* if(chance <= 10)
         {
             this.setChanged();
             //Call the ExtraBallBonus
             notifyObservers(this);
-        }
+        }*/
     }
 
     @Override
@@ -77,8 +77,10 @@ public abstract class AbstractBumper extends Observable implements Bumper{
         }
         if(remainingHitsToUpgrade <= 0){
             this.upgrade();
-            return normalPoints;
+            return pointsPerHit;
         }
+        this.setChanged();
+        this.notifyObservers(this);
         return pointsPerHit;
     }
 

@@ -17,6 +17,7 @@ public class SpotTarget extends AbstractTarget {
     public int hit(){
         this.setChanged();
         notifyObservers(this);
+        this.isActive = false;
         return pointsPerHit;
     }
 

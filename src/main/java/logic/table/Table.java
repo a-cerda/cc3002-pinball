@@ -1,5 +1,6 @@
 package logic.table;
 
+import controller.Game;
 import logic.TableVisitor;
 
 import logic.gameelements.bumper.Bumper;
@@ -67,5 +68,5 @@ public interface Table extends Observer, TableVisitor {
     boolean isPlayableTable();
 
 
-
+    Table setGame(Game game);
 }
