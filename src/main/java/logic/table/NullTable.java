@@ -7,6 +7,10 @@ import logic.gameelements.bumper.PopBumper;
 import logic.gameelements.target.DropTarget;
 import logic.gameelements.target.SpotTarget;
 import logic.gameelements.target.Target;
+import logic.updates.DropTargetUpdate;
+import logic.updates.HitUpdate;
+import logic.updates.SpotTargetUpdate;
+import logic.updates.UpgradeBumperUpdate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -148,6 +152,26 @@ public class NullTable implements Table{
      */
     @Override
     public void visitDropTarget(DropTarget dropTarget) {
+
+    }
+
+    @Override
+    public void visitHitUpdate(HitUpdate hitUpdate) {
+
+    }
+
+    @Override
+    public void visitSpotTargetUpdate(SpotTargetUpdate spotTargetUpdate) {
+
+    }
+
+    @Override
+    public void visitUpgradeBumperUpdate(UpgradeBumperUpdate upgradeBumperUpdate) {
+
+    }
+
+    @Override
+    public void visitDropTargetUpdate(DropTargetUpdate dropTargetUpdate) {
 
     }
 }

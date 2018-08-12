@@ -4,6 +4,10 @@ package logic;
 import logic.gameelements.bumper.Bumper;
 import logic.gameelements.target.DropTarget;
 import logic.gameelements.target.SpotTarget;
+import logic.updates.DropTargetUpdate;
+import logic.updates.HitUpdate;
+import logic.updates.SpotTargetUpdate;
+import logic.updates.UpgradeBumperUpdate;
 
 /**
  * An interface for visiting Hittables and determining which bonuses have to be triggered in the Game controller.
@@ -29,4 +33,12 @@ public interface TableVisitor
      * @param dropTarget
      */
     void visitDropTarget(DropTarget dropTarget);
+
+    void visitHitUpdate(HitUpdate hitUpdate);
+
+    void visitSpotTargetUpdate(SpotTargetUpdate spotTargetUpdate);
+
+    void visitUpgradeBumperUpdate(UpgradeBumperUpdate upgradeBumperUpdate);
+
+    void visitDropTargetUpdate(DropTargetUpdate dropTargetUpdate);
 }
