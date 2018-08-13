@@ -125,35 +125,35 @@ public class NullTable implements Table{
 
     }
 
-    /**
+/*    *//**
      * A method for visiting a bumper and invoking the corresponding ExtraBallBonus
      * does nothing
      * @param bumper
-     */
+     *//*
     @Override
     public void visitBumper(Bumper bumper) {
 
     }
 
-    /**
+    *//**
      * A method for visiting a spotTarget and invoking a JackPotBonus
      * does nothing
      * @param spotTarget
-     */
+     *//*
     @Override
     public void visitSpotTarget(SpotTarget spotTarget) {
 
     }
 
-    /**
+    *//**
      * A method for visiting a DropTarget and invoking a DropTargetBonus
      * does nothing
      * @param dropTarget
-     */
+     *//*
     @Override
     public void visitDropTarget(DropTarget dropTarget) {
 
-    }
+    }*/
 
     @Override
     public void visitHitUpdate(HitUpdate hitUpdate) {

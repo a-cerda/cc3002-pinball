@@ -16,23 +16,23 @@ import logic.updates.UpgradeBumperUpdate;
  */
 public interface TableVisitor
 {
-    /**
+/*    *//**
      * A method for visiting a bumper and invoking the corresponding ExtraBallBonus
      * @param bumper
-     */
+     *//*
     void visitBumper(Bumper bumper);
 
-    /**
+    *//**
      * A method for visiting a spotTarget and invoking a JackPotBonus
      * @param spotTarget
-     */
+     *//*
     void visitSpotTarget(SpotTarget spotTarget);
 
-    /**
+    *//**
      * A method for visiting a DropTarget and invoking a DropTargetBonus
      * @param dropTarget
-     */
-    void visitDropTarget(DropTarget dropTarget);
+     *//*
+    void visitDropTarget(DropTarget dropTarget);*/
 
     void visitHitUpdate(HitUpdate hitUpdate);
 

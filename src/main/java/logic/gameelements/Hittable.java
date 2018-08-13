@@ -32,5 +32,5 @@ public interface Hittable {
      *
      * @param table
      */
-    void accept(Table table);
+    //void accept(Table table);
 }

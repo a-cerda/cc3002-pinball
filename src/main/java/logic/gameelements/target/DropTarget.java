@@ -1,6 +1,7 @@
 package logic.gameelements.target;
 
 import logic.table.Table;
+import logic.updates.HitUpdate;
 
 import java.util.Random;
 
@@ -57,7 +58,7 @@ public class DropTarget extends AbstractTarget{
 //            notifyObservers(this);
 //        }
         this.setChanged();
-        notifyObservers(this);
+        notifyObservers(new HitUpdate(pointsPerHit));
         return pointsPerHit;
     }
 
@@ -66,8 +67,8 @@ public class DropTarget extends AbstractTarget{
      *
      * @param table
      */
-    @Override
+    /*@Override
     public void accept(Table table) {
         table.visitDropTarget(this);
-    }
+    }*/
 }

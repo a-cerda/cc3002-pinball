@@ -1,6 +1,7 @@
 package logic.gameelements.target;
 
 import logic.table.Table;
+import logic.updates.SpotTargetUpdate;
 
 
 public class SpotTarget extends AbstractTarget {
@@ -16,7 +17,7 @@ public class SpotTarget extends AbstractTarget {
     @Override
     public int hit(){
         this.setChanged();
-        notifyObservers(this);
+        notifyObservers(new SpotTargetUpdate());
         this.isActive = false;
         return pointsPerHit;
     }
@@ -26,10 +27,10 @@ public class SpotTarget extends AbstractTarget {
      *
      * @param table
      */
-    @Override
+    /*@Override
     public void accept(Table table)
     {
         table.visitSpotTarget(this);
-    }
+    }*/
 
 }

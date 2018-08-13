@@ -1,6 +1,7 @@
 package logic.gameelements.bumper;
 import controller.Game;
 import logic.table.Table;
+import logic.updates.HitUpdate;
 import logic.updates.UpgradeBumperUpdate;
 
 import java.util.Random;
@@ -83,7 +84,7 @@ public abstract class AbstractBumper extends Observable implements Bumper{
             return pointsPerHit;
         }
         this.setChanged();
-        this.notifyObservers(this);
+        this.notifyObservers(new HitUpdate(this.pointsPerHit));
         return pointsPerHit;
     }
 
@@ -110,9 +111,9 @@ public abstract class AbstractBumper extends Observable implements Bumper{
     public void setSeed(long seed){
         this.rand.setSeed(seed);
     }
-
+/*
     @Override
     public void accept(Table table){
         table.visitBumper(this);
-    }
+    }*/
 }

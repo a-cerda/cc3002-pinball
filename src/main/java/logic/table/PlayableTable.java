@@ -210,12 +210,12 @@ public class PlayableTable implements Table{
         }
     }
 
-
-    /**
+/*
+    *//**
      * A method for visiting a bumper and invoking the corresponding ExtraBallBonus
      *
      * @param bumper
-     */
+     *//*
     @Override
     public void visitBumper(Bumper bumper) {
         game.addToScore(bumper.getScore());
@@ -231,11 +231,11 @@ public class PlayableTable implements Table{
 
     }
 
-    /**
+    *//**
      * A method for visiting a spotTarget and invoking a JackPotBonus
      *
      * @param spotTarget
-     */
+     *//*
     @Override
     public void visitSpotTarget(SpotTarget spotTarget)
     {
@@ -243,11 +243,11 @@ public class PlayableTable implements Table{
         game.triggerJackPotBonus();
     }
 
-    /**
+    *//**
      * A method for visiting a DropTarget and invoking a DropTargetBonus
      *
      * @param dropTarget
-     */
+     *//*
     @Override
     public void visitDropTarget(DropTarget dropTarget) {
         game.addToScore(dropTarget.getScore());
@@ -258,11 +258,14 @@ public class PlayableTable implements Table{
         if(this.getCurrentlyDroppedDropTargets() == dropTargets.size()){
             game.triggerDropTargetBonus();
         }
-    }
+    }*/
 
     @Override
     public void visitHitUpdate(HitUpdate hitUpdate) {
        game.addToScore(hitUpdate.getPoints());
+        if(this.getCurrentlyDroppedDropTargets() == dropTargets.size()){
+           visitDropTargetUpdate(new DropTargetUpdate());
+        }
     }
 
     @Override
@@ -273,7 +276,7 @@ public class PlayableTable implements Table{
     @Override
     public void visitUpgradeBumperUpdate(UpgradeBumperUpdate upgradeBumperUpdate) {
         int randint = randInt(1,100);
-        if(randint < 10){
+        if(randint <= 10){
             game.triggerExtraBallBonus();
         }
     }
