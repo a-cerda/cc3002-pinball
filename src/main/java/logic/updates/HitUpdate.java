@@ -9,7 +9,7 @@ public class HitUpdate extends AbstractUpdate {
         this.points = points;
     }
     @Override
-    void accept(Table table){
+    public void accept(Table table){
         table.visitHitUpdate(this);
     }
 

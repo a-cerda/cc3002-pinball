@@ -4,7 +4,7 @@ import logic.table.Table;
 
 public class DropTargetUpdate extends AbstractUpdate {
     @Override
-    void accept (Table table){
+    public void accept(Table table){
         table.visitDropTargetUpdate(this);
     }
 }

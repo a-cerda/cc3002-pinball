@@ -8,10 +8,7 @@ import logic.gameelements.bumper.PopBumper;
 import logic.gameelements.target.DropTarget;
 import logic.gameelements.target.SpotTarget;
 import logic.gameelements.target.Target;
-import logic.updates.DropTargetUpdate;
-import logic.updates.HitUpdate;
-import logic.updates.SpotTargetUpdate;
-import logic.updates.UpgradeBumperUpdate;
+import logic.updates.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -207,9 +204,9 @@ public class PlayableTable implements Table{
      */
     @Override
     public void update(Observable o, Object arg) {
-        if(arg instanceof Hittable)
+        if(arg instanceof Update)
         {
-            ((Hittable)arg).accept(this);
+            ((Update)arg).accept(this);
         }
     }
 
@@ -265,22 +262,24 @@ public class PlayableTable implements Table{
 
     @Override
     public void visitHitUpdate(HitUpdate hitUpdate) {
-
-
+       game.addToScore(hitUpdate.getPoints());
     }
 
     @Override
     public void visitSpotTargetUpdate(SpotTargetUpdate spotTargetUpdate) {
-
+        game.triggerJackPotBonus();
     }
 
     @Override
     public void visitUpgradeBumperUpdate(UpgradeBumperUpdate upgradeBumperUpdate) {
-
+        int randint = randInt(1,100);
+        if(randint < 10){
+            game.triggerExtraBallBonus();
+        }
     }
 
     @Override
     public void visitDropTargetUpdate(DropTargetUpdate dropTargetUpdate) {
-
+        game.triggerDropTargetBonus();
     }
 }

@@ -1,6 +1,7 @@
 package logic.gameelements.bumper;
 import controller.Game;
 import logic.table.Table;
+import logic.updates.UpgradeBumperUpdate;
 
 import java.util.Random;
 import java.util.Observable;
@@ -50,6 +51,8 @@ public abstract class AbstractBumper extends Observable implements Bumper{
     public void upgrade() {
         isUpgraded = true;
         pointsPerHit = upgradedPoints;
+        this.setChanged();
+        notifyObservers(new UpgradeBumperUpdate());
         //int chance = randInt(1,100);
         //This gives us a 10% chance of getting the ExtraBallBonus
        /* if(chance <= 10)
