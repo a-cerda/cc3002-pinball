@@ -1,6 +1,8 @@
 package logic.gameelements.target;
 
 import logic.table.Table;
+import logic.updates.DropTargetExtraBallUpdate;
+import logic.updates.DropTargetUpdate;
 import logic.updates.HitUpdate;
 
 import java.util.Random;
@@ -51,15 +53,19 @@ public class DropTarget extends AbstractTarget{
      */
     @Override
     public int hit(){
-        this.isActive = false;
-//        if (randInt(1,100)<30)
-//        {
-//            this.setChanged();
-//            notifyObservers(this);
-//        }
-        this.setChanged();
-        notifyObservers(new HitUpdate(pointsPerHit));
-        return pointsPerHit;
+        if(this.isActive){
+            this.isActive = false;
+            if (randInt(1,100)<30)
+            {
+                this.setChanged();
+                notifyObservers(new DropTargetExtraBallUpdate());
+            }
+            this.setChanged();
+            notifyObservers(new DropTargetUpdate(pointsPerHit));
+            return pointsPerHit;
+        }
+        return 0;
+
     }
 
     /**

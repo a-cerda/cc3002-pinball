@@ -210,62 +210,10 @@ public class PlayableTable implements Table{
         }
     }
 
-/*
-    *//**
-     * A method for visiting a bumper and invoking the corresponding ExtraBallBonus
-     *
-     * @param bumper
-     *//*
-    @Override
-    public void visitBumper(Bumper bumper) {
-        game.addToScore(bumper.getScore());
-
-        int chance = randInt(1,100);
-        //This gives us a 10% chance of getting the ExtraBallBonus
-        if(chance <= 10)
-        {
-
-            //Call the ExtraBallBonus
-            game.triggerExtraBallBonus();
-        }
-
-    }
-
-    *//**
-     * A method for visiting a spotTarget and invoking a JackPotBonus
-     *
-     * @param spotTarget
-     *//*
-    @Override
-    public void visitSpotTarget(SpotTarget spotTarget)
-    {
-        game.addToScore(spotTarget.getScore());
-        game.triggerJackPotBonus();
-    }
-
-    *//**
-     * A method for visiting a DropTarget and invoking a DropTargetBonus
-     *
-     * @param dropTarget
-     *//*
-    @Override
-    public void visitDropTarget(DropTarget dropTarget) {
-        game.addToScore(dropTarget.getScore());
-        if(randInt(1,100) < 30){
-            game.triggerExtraBallBonus();
-        }
-
-        if(this.getCurrentlyDroppedDropTargets() == dropTargets.size()){
-            game.triggerDropTargetBonus();
-        }
-    }*/
 
     @Override
     public void visitHitUpdate(HitUpdate hitUpdate) {
        game.addToScore(hitUpdate.getPoints());
-        if(this.getCurrentlyDroppedDropTargets() == dropTargets.size()){
-           visitDropTargetUpdate(new DropTargetUpdate());
-        }
     }
 
     @Override
@@ -283,6 +231,14 @@ public class PlayableTable implements Table{
 
     @Override
     public void visitDropTargetUpdate(DropTargetUpdate dropTargetUpdate) {
-        game.triggerDropTargetBonus();
+        game.addToScore(dropTargetUpdate.getPoints());
+        if(this.getCurrentlyDroppedDropTargets() == dropTargets.size()){
+            game.triggerDropTargetBonus();
+        }
+    }
+
+    @Override
+    public void visitDropTargetExtraBallUpdate(DropTargetExtraBallUpdate dropTargetExtraBallUpdate) {
+        game.triggerExtraBallBonus();
     }
 }

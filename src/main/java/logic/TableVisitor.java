@@ -4,10 +4,7 @@ package logic;
 import logic.gameelements.bumper.Bumper;
 import logic.gameelements.target.DropTarget;
 import logic.gameelements.target.SpotTarget;
-import logic.updates.DropTargetUpdate;
-import logic.updates.HitUpdate;
-import logic.updates.SpotTargetUpdate;
-import logic.updates.UpgradeBumperUpdate;
+import logic.updates.*;
 
 /**
  * An interface for visiting Hittables and determining which bonuses have to be triggered in the Game controller.
@@ -30,7 +27,7 @@ public interface TableVisitor
 
     *//**
      * A method for visiting a DropTarget and invoking a DropTargetBonus
-     * @param dropTarget
+     * @param
      *//*
     void visitDropTarget(DropTarget dropTarget);*/
 
@@ -41,4 +38,6 @@ public interface TableVisitor
     void visitUpgradeBumperUpdate(UpgradeBumperUpdate upgradeBumperUpdate);
 
     void visitDropTargetUpdate(DropTargetUpdate dropTargetUpdate);
+
+    void visitDropTargetExtraBallUpdate(DropTargetExtraBallUpdate dropTargetExtraBallUpdate);
 }

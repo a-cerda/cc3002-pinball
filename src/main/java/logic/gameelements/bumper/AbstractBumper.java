@@ -77,12 +77,14 @@ public abstract class AbstractBumper extends Observable implements Bumper{
         if(!isUpgraded)
         {
             remainingHitsToUpgrade--;
+            if(remainingHitsToUpgrade == 0){
+
+                this.upgrade();
+
+            }
 
         }
-        if(remainingHitsToUpgrade <= 0){
-            this.upgrade();
-            return pointsPerHit;
-        }
+
         this.setChanged();
         this.notifyObservers(new HitUpdate(this.pointsPerHit));
         return pointsPerHit;

@@ -138,6 +138,19 @@ public class HomeworkTwoTest {
     public void SpotTargetTest(){
         int pointsGiven = spotTarget.hit();
         assertEquals(0,pointsGiven);
+        System.out.println(playableTable.randInt(1,100));
+        System.out.println(playableTable.randInt(1,100));
+        System.out.println(playableTable.randInt(1,100));
+        System.out.println(playableTable.randInt(1,100));
+        System.out.println(playableTable.randInt(1,100));
+        System.out.println(playableTable.randInt(1,100));
+        System.out.println(playableTable.randInt(1,100));
+        System.out.println(playableTable.randInt(1,100));
+        System.out.println(playableTable.randInt(1,100));
+        System.out.println(playableTable.randInt(1,100));
+        System.out.println(playableTable.randInt(1,100));
+        System.out.println(playableTable.randInt(1,100));
+        System.out.println(playableTable.randInt(1,100));
 
 
     }

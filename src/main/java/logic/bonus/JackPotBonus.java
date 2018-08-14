@@ -19,6 +19,7 @@ public class JackPotBonus extends AbstractBonus {
 
     private JackPotBonus(){
         super();
+        this.pointsGiven = 100000;
     }
     /**
      * Trigger the specific action the bonus does and applies it to the {@link Game} object.
