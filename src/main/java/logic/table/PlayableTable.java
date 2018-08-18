@@ -234,6 +234,7 @@ public class PlayableTable implements Table{
         game.addToScore(dropTargetUpdate.getPoints());
         if(this.getCurrentlyDroppedDropTargets() == dropTargets.size()){
             game.triggerDropTargetBonus();
+            resetDropTargets();
         }
     }
 
