@@ -31,6 +31,6 @@ public class JackPotBonus extends AbstractBonus {
         game.addToScore(pointsGiven);
         timesTriggered++;
     }
-
+    //asdf
 
 }
