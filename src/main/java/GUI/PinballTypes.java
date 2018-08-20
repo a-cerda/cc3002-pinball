@@ -2,8 +2,9 @@ package GUI;
 
 import java.io.Serializable;
 
-public enum ExampleType {
+public enum PinballTypes {
     PLAYER,
     BALL,
-    WALL;
+    WALL,
+    PADDLE;
 }
