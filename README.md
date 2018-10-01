@@ -9,13 +9,13 @@ Para iniciar un juego nuevo se debe cargar el proyecto en su IDE favorito (Recom
 
 Dentro de `src/main/resources` están los assets del juego, estos comprenden música de fondo y efectos de sonido.
 
-###Controles:
+### Controles:
 Paletas: `Z` para mover la paleta izquierda, `M` para mover la paleta derecha.  
 Bola: Para tirar una bola nueva apretar `B`.
 
 
 
-###Bugs Conocidos:
+### Bugs Conocidos:
 Al correr el programa en un computador con Manjaro Linux, el juego no funciona si no se desactivan primero todos los sonidos. Esto se debe a que el 
 programa es compatible únicamente con ciertas librerías de mp3 y wav, solución desconocida.
 
